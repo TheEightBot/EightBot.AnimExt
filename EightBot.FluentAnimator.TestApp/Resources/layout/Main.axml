@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/fadeOut"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+    <Button
+        android:text="Fade In"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fadeIn" />
+    <Button
+        android:text="Wiggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wiggle" />
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/flip"
+        android:textOn="Flip To Normal"
+        android:textOff="Flip"
+        android:checked="false" />
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin"
+        android:textOn="Stop Spinning"
+        android:textOff="Start Spinning"
+        android:checked="false" />
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pulsate"
+        android:text="Pulsate"
+        android:textOn="Stop Pulsating"
+        android:textOff="Start Pulsating"
+        android:checked="false" />
+    <ImageView
+        android:src="@android:drawable/sym_def_app_icon"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:id="@+id/androidy"
+        android:layout_margin="8dp" />
+</LinearLayout>
