@@ -8,8 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Android.Animation;
 using Android.Views.Animations;
+using EightBot.AnimExt.Droid;
 
-namespace EightBot.FluentAnimator.TestApp
+namespace EightBot.AnimExt.TestApp.Droid
 {
 	[Activity (Label = "EightBot.FluentAnimator.TestApp", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
@@ -25,10 +26,13 @@ namespace EightBot.FluentAnimator.TestApp
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			var fadeIn = FindViewById<Button> (Resource.Id.fadeIn);
-			var fadeOut = FindViewById<Button> (Resource.Id.fadeOut);
+			var fade = FindViewById<ToggleButton> (Resource.Id.fade);
 
 			var wiggle = FindViewById<Button> (Resource.Id.wiggle);
+
+			var squish = FindViewById<Button> (Resource.Id.squish);
+
+			var jiggle = FindViewById<Button> (Resource.Id.jiggle);
 
 			var flip = FindViewById<ToggleButton> (Resource.Id.flip);
 
@@ -38,29 +42,36 @@ namespace EightBot.FluentAnimator.TestApp
 
 			var image = FindViewById<ImageView> (Resource.Id.androidy);
 			
-			fadeIn.Click += delegate {
-				image.FadeIn();
-			};
-
-			fadeOut.Click += delegate {
-				image.FadeOut();
+			fade.CheckedChange += (s,e) => {
+				if(e.IsChecked)
+					image.FadeIn();
+				else
+					image.FadeOut();
 			};
 
 			wiggle.Click += delegate {
-				image.Wiggle(10);
+				image.Wiggle(EightBot.AnimExt.Droid.Direction.Horizontal, 15f);
+			};
+
+			squish.Click += delegate {
+				image.Squish(EightBot.AnimExt.Droid.Direction.Vertical, .3f);
+			};
+
+			jiggle.Click += delegate {
+				image.JiggleBilly(scaleAmount: 1.6f, jiggleCount: 6, duration: 2400);
 			};
 
 			flip.CheckedChange += (s,e) => {
 				if(e.IsChecked)
-					image.Flip(EightBot.FluentAnimator.FluentPropertyAnimation.FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
+					image.Flip(FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
 				else
-					image.FlipReturn(EightBot.FluentAnimator.FluentPropertyAnimation.FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
+					image.FlipReturn(FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
 			};
 
 			ValueAnimator spinAnimation = null;
 			spin.CheckedChange += (sender, e) => {
 				if(e.IsChecked)
-					spinAnimation = image.Spin(FluentPropertyAnimation.DefaultDuration * 2, interpolator: new AnticipateOvershootInterpolator());
+					spinAnimation = image.Spin(AnimationExtensions.DefaultAnimationDuration * 2, interpolator: new AnticipateOvershootInterpolator());
 				else
 					spinAnimation.End();
 			};

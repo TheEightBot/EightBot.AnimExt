@@ -12,7 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace EightBot.FluentAnimator.TestApp
+namespace EightBot.AnimExt.TestApp.Droid
 {
 	public class AnimatingFragment : Fragment
 	{

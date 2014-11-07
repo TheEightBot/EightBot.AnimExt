@@ -4,20 +4,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Button
-        android:id="@+id/fadeOut"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
-    <Button
-        android:text="Fade In"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fadeIn" />
-    <Button
         android:text="Wiggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/wiggle" />
+    <Button
+        android:text="Squish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/squish" />
+    <Button
+        android:text="Commence the Jiggling!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jiggle" />
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fade"
+        android:textOn="Fade Out"
+        android:textOff="Fade In" />
     <ToggleButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +49,8 @@
     <ImageView
         android:src="@android:drawable/sym_def_app_icon"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="match_parent"
         android:id="@+id/androidy"
-        android:layout_margin="8dp" />
+        android:layout_margin="40dp"
+        android:scaleType="fitCenter" />
 </LinearLayout>

@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{6FADB81F-5E78-4676-B52A-3BD0F42E6CBA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>EightBot.FluentAnimator.TestApp</RootNamespace>
+    <RootNamespace>EightBot.AnimExt.TestApp.Droid</RootNamespace>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -15,6 +15,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>EightBot.FluentAnimator.TestApp</AssemblyName>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +52,7 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -59,9 +61,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\EightBot.FluentAnimator\EightBot.FluentAnimator.csproj">
+    <ProjectReference Include="..\EightBot.AnimExt.Droid\EightBot.AnimExt.Droid.csproj">
       <Project>{E5869999-A030-4D8C-86AC-DA43B9E6D370}</Project>
-      <Name>EightBot.FluentAnimator</Name>
+      <Name>EightBot.AnimExt.Droid</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
