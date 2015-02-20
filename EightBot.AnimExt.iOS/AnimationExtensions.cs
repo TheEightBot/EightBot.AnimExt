@@ -49,7 +49,7 @@ namespace EightBot.AnimExt.iOS
 				
 			var identity = CGAffineTransform.MakeIdentity ();
 
-			if(view.Transform.Equals(identity)
+			if(view.Transform.Equals(identity))
 				await Spin(view);
 
 //			UIView.AnimateKeyframes (1d, 0d, UIViewKeyframeAnimationOptions.CalculationModePaced,
