@@ -235,6 +235,7 @@ namespace EightBot.AnimExt.iOS
 			return animationCompleted.Task;
 		}
 
+
 		private static float DegreesToRadians(float degrees){
 			return (degrees / 180f) * (float)Math.PI;
 		}

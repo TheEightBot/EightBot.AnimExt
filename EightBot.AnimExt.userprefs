@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="EightBot.AnimExt.TestApp.iOS/EightBot.AnimExt.TestApp.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.1" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.AJ's iPod touch" />
   <MonoDevelop.Ide.Workbench ActiveDocument="EightBot.AnimExt.iOS/AnimationExtensions.cs">
     <Files>
       <File FileName="EightBot.AnimExt.Droid/AnimationExtensions.cs" Line="1" Column="1" />
-      <File FileName="EightBot.AnimExt.iOS/AnimationExtensions.cs" Line="4" Column="4" />
-      <File FileName="EightBot.AnimExt.TestApp.iOS/AnimationViewController.cs" Line="3" Column="3" />
+      <File FileName="EightBot.AnimExt.iOS/AnimationExtensions.cs" Line="1" Column="1" />
+      <File FileName="EightBot.AnimExt.TestApp.iOS/AnimationViewController.cs" Line="48" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
