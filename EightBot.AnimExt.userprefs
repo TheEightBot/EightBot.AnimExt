@@ -1,11 +1,10 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EightBot.AnimExt.TestApp.Droid/MainActivity.cs">
+﻿<Properties StartupItem="EightBot.AnimExt.TestApp.iOS/EightBot.AnimExt.TestApp.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="EightBot.AnimExt.iOS/AnimationExtensions.cs">
     <Files>
-      <File FileName="EightBot.AnimExt.Droid/AnimationExtensions.cs" Line="45" Column="45" />
+      <File FileName="EightBot.AnimExt.Droid/AnimationExtensions.cs" Line="1" Column="1" />
       <File FileName="EightBot.AnimExt.iOS/AnimationExtensions.cs" Line="4" Column="4" />
-      <File FileName="EightBot.AnimExt.TestApp.Droid/AnimatingFragment.cs" Line="41" Column="41" />
-      <File FileName="EightBot.AnimExt.TestApp.Droid/MainActivity.cs" Line="14" Column="14" />
+      <File FileName="EightBot.AnimExt.TestApp.iOS/AnimationViewController.cs" Line="3" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

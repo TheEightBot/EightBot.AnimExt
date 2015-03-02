@@ -30,6 +30,7 @@ namespace EightBot.AnimExt.Droid
 		public static ValueAnimator FadeOut(this View view, long duration = DefaultAnimationDuration){
 
 			var animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
+
 			animation.SetDuration (duration);
 
 			if(view.Alpha != 0f)

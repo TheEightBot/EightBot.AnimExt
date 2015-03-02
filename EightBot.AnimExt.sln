@@ -86,7 +86,4 @@ Global
 		{F044675E-A34F-43C6-A519-F71D2044E699}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{F044675E-A34F-43C6-A519-F71D2044E699}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = EightBot.AnimExt.TestApp.Droid\EightBot.AnimExt.TestApp.Droid.csproj
-	EndGlobalSection
 EndGlobal
