@@ -61,8 +61,8 @@ namespace EightBot.AnimExt.TestApp.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050007
-			public const int androidy = 2131034119;
+			// aapt resource value: 0x7f050009
+			public const int androidy = 2131034121;
 			
 			// aapt resource value: 0x7f050003
 			public const int fade = 2131034115;
@@ -75,6 +75,12 @@ namespace EightBot.AnimExt.TestApp.Droid
 			
 			// aapt resource value: 0x7f050006
 			public const int pulsate = 2131034118;
+			
+			// aapt resource value: 0x7f050008
+			public const int reset = 2131034120;
+			
+			// aapt resource value: 0x7f050007
+			public const int slide = 2131034119;
 			
 			// aapt resource value: 0x7f050005
 			public const int spin = 2131034117;

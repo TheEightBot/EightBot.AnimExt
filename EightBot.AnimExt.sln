@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EightBot.AnimExt.TestApp.Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EightBot.AnimExt.TestApp.iOS", "EightBot.AnimExt.TestApp.iOS\EightBot.AnimExt.TestApp.iOS.csproj", "{F044675E-A34F-43C6-A519-F71D2044E699}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EightBot.AnimExt.Shared", "EightBot.AnimExt.Shared\EightBot.AnimExt.Shared.shproj", "{A77DD38C-F97C-4053-A4AF-9B8DEAEDD79C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

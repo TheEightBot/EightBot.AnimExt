@@ -46,11 +46,21 @@
         android:textOn="Stop Pulsating"
         android:textOff="Start Pulsating"
         android:checked="false" />
+    <Button
+        android:text="Slide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/slide" />
+    <Button
+        android:text="Reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reset" />
     <ImageView
         android:src="@android:drawable/sym_def_app_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/androidy"
-        android:layout_margin="40dp"
+        android:layout_margin="20dp"
         android:scaleType="fitCenter" />
 </LinearLayout>

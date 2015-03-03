@@ -51,5 +51,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
+  <Import Project="..\EightBot.AnimExt.Shared\EightBot.AnimExt.Shared.projitems" Label="Shared" Condition="Exists('..\EightBot.AnimExt.Shared\EightBot.AnimExt.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>

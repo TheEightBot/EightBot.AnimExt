@@ -7,51 +7,30 @@ using CoreAnimation;
 
 namespace EightBot.AnimExt.iOS
 {
-	public enum FlipDirection
-	{
-		RightToLeft,
-		LeftToRight,
-		TopToBottom,
-		BottomToTop
-	}
-
-	public enum SlideDirection
-	{
-		FromRight,
-		FromLeft,
-		FromTop,
-		FromBottom,
-		ToRight,
-		ToLeft,
-		ToTop,
-		ToBottom
-	}
-
-	public enum Direction
-	{
-		Horizontal,
-		Vertical
-	}
-
-	public enum SpinDirection
-	{
-		Clockwise,
-		CounterClockwise
-	}
 
 	public static class AnimationExtensions
 	{
 		public const double DefaultAnimationDuration = .2d;
 
-		public static Task FadeOut(this UIView view, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
+		public static Task Fade(this UIView view, FadeType fadeType = FadeType.In, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
 			var animationCompleted = new TaskCompletionSource<object> ();
 			UIView.Animate (duration, 0, animationOptions,
 				() => {
 					if(animationCompleted.Task.IsCanceled)
 						return;
 
-					if(view.Alpha != 0f)
-						view.Alpha = 0f;
+					switch (fadeType) {
+						case FadeType.In:
+							if(view.Alpha != 1f)
+								view.Alpha = 1f;
+							break;
+						case FadeType.Out:
+							if(view.Alpha != 0f)
+								view.Alpha = 0f;
+							break;
+					}
+
+
 				},
 				() => animationCompleted.TrySetResult(null)
 			);
@@ -59,23 +38,7 @@ namespace EightBot.AnimExt.iOS
 			return animationCompleted.Task;
 
 		}
-
-		public static Task FadeIn(this UIView view, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
-			var animationCompleted = new TaskCompletionSource<object> ();
-			UIView.Animate (duration, 0, animationOptions,
-				() => {
-					if(animationCompleted.Task.IsCanceled)
-						return;
-
-					if(view.Alpha != 1f)
-						view.Alpha = 1f;
-				},
-				() => animationCompleted.TrySetResult(null)
-			);
-
-			return animationCompleted.Task;
-		}
-
+			
 		public static async Task Spin(this UIView view, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
 			var splitDuration = duration / 4f;
 			for (int i = 0; i < 4; i++) {
@@ -103,7 +66,7 @@ namespace EightBot.AnimExt.iOS
 			return animationCompleted.Task;
 		}
 			
-		public static async Task Flip (this UIView view, FlipDirection flipDirection, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear)
+		public static Task Flip (this UIView view, FlipDirection flipDirection, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear)
 		{
 			var m34 = (nfloat)(-1 * 0.001);
 			view.Layer.AnchorPoint = new CGPoint ((nfloat)0.5, (nfloat)0.5f);
@@ -129,12 +92,15 @@ namespace EightBot.AnimExt.iOS
 			var animationCompleted = new TaskCompletionSource<object> ();
 			UIView.Animate (duration, 0, animationOptions,
 				() => {
+					if(animationCompleted.Task.IsCanceled)
+						return;
+
 					view.Layer.Transform = transform;
 				},
 				() => animationCompleted.TrySetResult(null)
 			);
 
-			await animationCompleted.Task;	
+			return animationCompleted.Task;	
 		}
 
 		public static Task Scale(this UIView view, float scaleAmount, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
@@ -217,7 +183,7 @@ namespace EightBot.AnimExt.iOS
 			return animationCompleted.Task;
 		}
 
-		public static Task Reset(this UIView view, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
+		public static Task ResetAnimation(this UIView view, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
 
 			System.Diagnostics.Debug.WriteLine ("Restart Started");
 

@@ -1,14 +1,16 @@
-﻿<Properties StartupItem="EightBot.AnimExt.TestApp.iOS/EightBot.AnimExt.TestApp.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.AJ's iPod touch" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EightBot.AnimExt.iOS/AnimationExtensions.cs">
+﻿<Properties StartupItem="EightBot.AnimExt.TestApp.Droid/EightBot.AnimExt.TestApp.Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.101:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="EightBot.AnimExt.Droid/AnimationExtensions.cs">
     <Files>
-      <File FileName="EightBot.AnimExt.Droid/AnimationExtensions.cs" Line="1" Column="1" />
-      <File FileName="EightBot.AnimExt.iOS/AnimationExtensions.cs" Line="1" Column="1" />
-      <File FileName="EightBot.AnimExt.TestApp.iOS/AnimationViewController.cs" Line="48" Column="48" />
+      <File FileName="EightBot.AnimExt.Droid/AnimationExtensions.cs" Line="16" Column="16" />
+      <File FileName="EightBot.AnimExt.TestApp.iOS/AnimationViewController.cs" Line="31" Column="31" />
+      <File FileName="EightBot.AnimExt.TestApp.Droid/MainActivity.cs" Line="25" Column="25" />
+      <File FileName="EightBot.AnimExt.iOS/AnimationExtensions.cs" Line="36" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.EightBot.AnimExt.TestApp.Droid AndroidDesignerPreferredDevice="Nexus 4" />
 </Properties>

@@ -119,7 +119,7 @@ namespace EightBot.AnimExt.TestApp.iOS
 
 			reset.TouchUpInside += async (sender, e) => {
 				System.Diagnostics.Debug.WriteLine("Reset Started");
-				await image.Reset();
+				await image.ResetAnimation();
 				System.Diagnostics.Debug.WriteLine("Reset Completed");
 			};
 

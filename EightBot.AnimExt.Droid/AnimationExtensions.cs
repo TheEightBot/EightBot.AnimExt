@@ -6,51 +6,45 @@ using System.Collections.Generic;
 
 namespace EightBot.AnimExt.Droid
 {
-
-	public enum FlipDirection
-	{
-		RightToLeft,
-		LeftToRight,
-		TopToBottom,
-		BottomToTop
-	}
-
-	public enum Direction
-	{
-		Horizontal,
-		Vertical
-	}
-
-
 	public static class AnimationExtensions
 	{
 
 		public const long DefaultAnimationDuration = 1200;
 
-		public static ValueAnimator FadeOut(this View view, long duration = DefaultAnimationDuration){
+		public static ValueAnimator Fade(this View view, FadeType fadeType = FadeType.In, long duration = DefaultAnimationDuration){
 
-			var animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
+			ObjectAnimator animation = null;
+
+			switch (fadeType) {
+			case FadeType.In:
+				animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
+				break;
+			case FadeType.Out:
+				animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
+				break;
+			}
 
 			animation.SetDuration (duration);
 
-			if(view.Alpha != 0f)
-				animation.Start ();
+			animation.Start ();
 
 			return animation;
 		}
 
-		public static ValueAnimator FadeIn(this View view, long duration = DefaultAnimationDuration){
-			var animation = ObjectAnimator.OfFloat (view, "alpha", 0f, 1f);
-			animation.SetDuration (duration);
+		public static ValueAnimator Spin(this View view, SpinDirection spinDirection = SpinDirection.Clockwise, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
 
-			if(view.Alpha != 1f)
-				animation.Start ();
 
-			return animation;
-		}
+			ObjectAnimator rotation = ObjectAnimator.OfFloat (view, "rotation", 0, 360);
 
-		public static ValueAnimator Spin(this View view, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
-			var rotation = ObjectAnimator.OfFloat (view, "rotation", 0, 360);
+			switch (spinDirection) {
+			case SpinDirection.Clockwise:
+				rotation = ObjectAnimator.OfFloat (view, "rotation", 0, 360);
+				break;
+			case SpinDirection.CounterClockwise:
+				rotation = ObjectAnimator.OfFloat (view, "rotation", 0, -360);
+				break;
+			}
+
 			rotation.SetDuration (duration);
 			rotation.SetInterpolator (interpolator ?? new LinearInterpolator());
 			rotation.RepeatCount = ValueAnimator.Infinite;
@@ -60,7 +54,7 @@ namespace EightBot.AnimExt.Droid
 			return rotation;
 		}
 
-		public static ValueAnimator Flip(this View view, FlipDirection flipDirection, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
+		public static ValueAnimator Flip(this View view, FlipDirection flipDirection, bool returnToOriginalPosition = false, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
 
 			var flipProperty = "rotationY";
 			var flipDegrees = -180f;
@@ -80,36 +74,11 @@ namespace EightBot.AnimExt.Droid
 				break;
 			}
 
-			var rotation = ObjectAnimator.OfFloat (view, flipProperty, 0, flipDegrees);
-			rotation.SetDuration (duration);
-			rotation.SetInterpolator (interpolator ?? new LinearInterpolator());
-
-			rotation.Start ();
-
-			return rotation;
-		}
-
-		public static ValueAnimator FlipReturn(this View view, FlipDirection flipDirection, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
-		
-			var flipProperty = "rotationY";
-			var flipDegrees = -180f;
-
-			switch (flipDirection) {
-			case FlipDirection.LeftToRight:
-				flipDegrees = -flipDegrees;
-				break;
-			case FlipDirection.RightToLeft:
-				break;
-			case FlipDirection.TopToBottom:
-				flipProperty = "rotationX";
-				break;
-			case FlipDirection.BottomToTop:
-				flipProperty = "rotationX";
-				flipDegrees = -flipDegrees;
-				break;
-			}
-
-			var rotation = ObjectAnimator.OfFloat (view, flipProperty, flipDegrees, 0);
+			var rotation = ObjectAnimator.OfFloat (
+				view, 
+				flipProperty, 
+				returnToOriginalPosition ? flipDegrees : 0, 
+				returnToOriginalPosition ? 0 : flipDegrees);
 
 			rotation.SetDuration (duration);
 			rotation.SetInterpolator (interpolator ?? new LinearInterpolator());
@@ -119,6 +88,18 @@ namespace EightBot.AnimExt.Droid
 			return rotation;
 		}
 
+		public static ValueAnimator Scale(this View view, float scaleAmount, long duration = DefaultAnimationDuration){
+			var scale = ObjectAnimator.OfPropertyValuesHolder (
+				view,
+				PropertyValuesHolder.OfFloat ("scaleX", 1, scaleAmount),
+				PropertyValuesHolder.OfFloat ("scaleY", 1, scaleAmount)
+			);
+			scale.SetDuration (duration);
+			scale.RepeatCount = 0;
+			scale.Start ();
+			return scale;
+		}
+			
 		public static ValueAnimator Pulsate(this View view, float pulsateSize = .9f, long duration = DefaultAnimationDuration){
 			var scale = ObjectAnimator.OfPropertyValuesHolder (
 				view,
@@ -161,6 +142,46 @@ namespace EightBot.AnimExt.Droid
 			return scale;
 		}
 
+		public static ValueAnimator Slide(this View view, SlideDirection slideDirection, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
+
+			System.Diagnostics.Debug.WriteLine ("Slide Direction: {0}", slideDirection);
+
+			ObjectAnimator slide = null;
+
+			switch (slideDirection) {
+				case SlideDirection.FromBottom:
+					slide = ObjectAnimator.OfFloat (view, "translationY", view.MeasuredHeight, 0f);
+					break;
+				case SlideDirection.FromLeft:
+					slide = ObjectAnimator.OfFloat (view, "translationX", -view.MeasuredWidth, 0f);
+					break;
+				case SlideDirection.FromRight:
+					slide = ObjectAnimator.OfFloat (view, "translationX", view.MeasuredWidth, 0f);
+					break;
+				case SlideDirection.FromTop:
+					slide = ObjectAnimator.OfFloat (view, "translationY", -view.MeasuredHeight, 0f);
+					break;
+				case SlideDirection.ToBottom:
+					slide = ObjectAnimator.OfFloat (view, "translationY", 0f, view.MeasuredHeight);
+					break;
+				case SlideDirection.ToLeft:
+					slide = ObjectAnimator.OfFloat (view, "translationX", 0f, -view.MeasuredWidth);
+					break;
+				case SlideDirection.ToRight:
+					slide = ObjectAnimator.OfFloat (view, "translationX", 0f, view.MeasuredWidth);
+					break;
+				case SlideDirection.ToTop:
+				default:
+					slide = ObjectAnimator.OfFloat (view, "translationY", 0f, -view.MeasuredHeight);
+					break;
+			}
+
+			slide.SetInterpolator (interpolator ?? new DecelerateInterpolator ());
+			slide.SetDuration (duration);
+			slide.Start ();
+			return slide;
+		}
+			
 		public static ValueAnimator JiggleBilly(this View view, float scaleAmount = 1.3f, float jiggleDegrees = 15f, int jiggleCount = 3, long duration = DefaultAnimationDuration){
 
 			var jiggleRotation = new List<float>();
@@ -184,6 +205,28 @@ namespace EightBot.AnimExt.Droid
 			scale.RepeatCount = 0;
 			scale.Start ();
 			return scale;
+		}
+	
+		public static ValueAnimator ResetAnimation(this View view, long duration = DefaultAnimationDuration, ITimeInterpolator interpolator = null){
+
+			System.Diagnostics.Debug.WriteLine ("Reset Values");
+
+			var reset = ObjectAnimator.OfPropertyValuesHolder (
+				            view,
+				            PropertyValuesHolder.OfFloat ("translationY", view.TranslationY, 0f),
+				            PropertyValuesHolder.OfFloat ("translationX", view.TranslationX, 0f),
+				            PropertyValuesHolder.OfFloat ("scaleX", view.ScaleX, 1.0f),
+							PropertyValuesHolder.OfFloat ("scaleY", view.ScaleY, 1.0f),
+							PropertyValuesHolder.OfFloat ("rotation", view.Rotation, 0.0f),
+							PropertyValuesHolder.OfFloat ("rotationX", view.RotationX, 0.0f),
+							PropertyValuesHolder.OfFloat ("rotationY", view.RotationY, 0.0f),
+							PropertyValuesHolder.OfFloat ("alpha", view.Alpha, 1.0f));
+				
+			reset.SetInterpolator (interpolator ?? new AccelerateDecelerateInterpolator ());
+			reset.SetDuration (duration);
+			reset.RepeatCount = 0;
+			reset.Start ();
+			return reset;
 		}
 	}
 }

@@ -40,21 +40,25 @@ namespace EightBot.AnimExt.TestApp.Droid
 
 			var pulsate = FindViewById<ToggleButton> (Resource.Id.pulsate);
 
+			var slide = FindViewById<Button> (Resource.Id.slide);
+
+			var reset = FindViewById<Button> (Resource.Id.reset);
+
 			var image = FindViewById<ImageView> (Resource.Id.androidy);
 			
 			fade.CheckedChange += (s,e) => {
 				if(e.IsChecked)
-					image.FadeIn();
+					image.Fade(AnimExt.FadeType.In);
 				else
-					image.FadeOut();
+					image.Fade(AnimExt.FadeType.Out);
 			};
 
 			wiggle.Click += delegate {
-				image.Wiggle(EightBot.AnimExt.Droid.Direction.Horizontal, 15f);
+				image.Wiggle(EightBot.AnimExt.Direction.Horizontal, 15f);
 			};
 
 			squish.Click += delegate {
-				image.Squish(EightBot.AnimExt.Droid.Direction.Vertical, .3f);
+				image.Squish(EightBot.AnimExt.Direction.Vertical, .3f);
 			};
 
 			jiggle.Click += delegate {
@@ -65,17 +69,28 @@ namespace EightBot.AnimExt.TestApp.Droid
 				if(e.IsChecked)
 					image.Flip(FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
 				else
-					image.FlipReturn(FlipDirection.LeftToRight, interpolator: new AnticipateInterpolator());
+					image.Flip(FlipDirection.LeftToRight, true, interpolator: new AnticipateInterpolator());
 			};
 
 			ValueAnimator spinAnimation = null;
 			spin.CheckedChange += (sender, e) => {
+
+				var randomDirection = new Random();
+
 				if(e.IsChecked)
-					spinAnimation = image.Spin(AnimationExtensions.DefaultAnimationDuration * 2, interpolator: new AnticipateOvershootInterpolator());
+					spinAnimation = image.Spin(AnimExt.SpinDirection.CounterClockwise, AnimationExtensions.DefaultAnimationDuration * 2, interpolator: new AnticipateOvershootInterpolator());
 				else
 					spinAnimation.End();
 			};
+				
+			slide.Click += (sender, e) => {
+				var enumValue = (SlideDirection)((new Random()).Next(0, Enum.GetNames(typeof(SlideDirection)).Length));
+				image.Slide(enumValue, AnimationExtensions.DefaultAnimationDuration * 2);
+			};
 
+			reset.Click += (sender, e) => {
+				image.ResetAnimation();
+			};
 
 			ValueAnimator pulsateAnimation = null;
 			pulsate.CheckedChange += (sender, e) => {
