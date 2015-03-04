@@ -17,7 +17,7 @@ namespace EightBot.AnimExt.Droid
 
 			switch (fadeType) {
 			case FadeType.In:
-				animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
+				animation = ObjectAnimator.OfFloat (view, "alpha", 0f, 1f);
 				break;
 			case FadeType.Out:
 				animation = ObjectAnimator.OfFloat (view, "alpha", 1f, 0f);
