@@ -38,7 +38,7 @@ namespace EightBot.AnimExt.iOS
 			return animationCompleted.Task;
 
 		}
-			
+
 		public static async Task Spin(this UIView view, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
 			var splitDuration = duration / 4f;
 			for (int i = 0; i < 4; i++) {
@@ -48,7 +48,7 @@ namespace EightBot.AnimExt.iOS
 		}
 
 		public static Task Rotate(this UIView view, float degrees, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
-	
+
 			System.Diagnostics.Debug.WriteLine ("degrees: {0}", degrees);
 			var rotation = CGAffineTransform.Rotate (view.Transform, (spinDirection == SpinDirection.Clockwise ? 1 : -1) * DegreesToRadians(degrees - .00001f));
 
@@ -65,7 +65,7 @@ namespace EightBot.AnimExt.iOS
 
 			return animationCompleted.Task;
 		}
-			
+
 		public static Task Flip (this UIView view, FlipDirection flipDirection, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear)
 		{
 			var m34 = (nfloat)(-1 * 0.001);
@@ -129,42 +129,42 @@ namespace EightBot.AnimExt.iOS
 			CGAffineTransform startingTransform, endingTransform;
 
 			switch (slideDirection) {
-			case SlideDirection.FromBottom:
-				startingTransform = CGAffineTransform.MakeTranslation (0f, view.Bounds.Height);
-				endingTransform = CGAffineTransform.MakeIdentity ();
-				break;
-			case SlideDirection.FromLeft:
-				startingTransform = CGAffineTransform.MakeTranslation (-view.Bounds.Width, 0f);
-				endingTransform = CGAffineTransform.MakeIdentity ();
-				break;
-			case SlideDirection.FromRight:
-				startingTransform = CGAffineTransform.MakeTranslation (view.Bounds.Width, 0f);
-				endingTransform = CGAffineTransform.MakeIdentity ();
-				break;
-			case SlideDirection.FromTop:
-				startingTransform = CGAffineTransform.MakeTranslation (0f, -view.Bounds.Height);
-				endingTransform = CGAffineTransform.MakeIdentity ();
-				break;
-			case SlideDirection.ToBottom:
-				startingTransform = CGAffineTransform.MakeIdentity ();
-				endingTransform = CGAffineTransform.MakeTranslation (0f, view.Bounds.Height);
-				break;
-			case SlideDirection.ToLeft:
-				startingTransform = CGAffineTransform.MakeIdentity ();
-				endingTransform = CGAffineTransform.MakeTranslation (-view.Bounds.Width, 0f);
-				break;
-			case SlideDirection.ToRight:
-				startingTransform = CGAffineTransform.MakeIdentity ();
-				endingTransform = CGAffineTransform.MakeTranslation (view.Bounds.Width, 0f);
-				break;
-			case SlideDirection.ToTop:
-				startingTransform = CGAffineTransform.MakeIdentity ();
-				endingTransform = CGAffineTransform.MakeTranslation (0f, -view.Bounds.Height);
-				break;
-			default:
-				startingTransform = CGAffineTransform.MakeIdentity ();
-				endingTransform = CGAffineTransform.MakeIdentity ();
-				break;
+				case SlideDirection.FromBottom:
+					startingTransform = CGAffineTransform.MakeTranslation (0f, view.Bounds.Height);
+					endingTransform = CGAffineTransform.MakeIdentity ();
+					break;
+				case SlideDirection.FromLeft:
+					startingTransform = CGAffineTransform.MakeTranslation (-view.Bounds.Width, 0f);
+					endingTransform = CGAffineTransform.MakeIdentity ();
+					break;
+				case SlideDirection.FromRight:
+					startingTransform = CGAffineTransform.MakeTranslation (view.Bounds.Width, 0f);
+					endingTransform = CGAffineTransform.MakeIdentity ();
+					break;
+				case SlideDirection.FromTop:
+					startingTransform = CGAffineTransform.MakeTranslation (0f, -view.Bounds.Height);
+					endingTransform = CGAffineTransform.MakeIdentity ();
+					break;
+				case SlideDirection.ToBottom:
+					startingTransform = CGAffineTransform.MakeIdentity ();
+					endingTransform = CGAffineTransform.MakeTranslation (0f, view.Bounds.Height);
+					break;
+				case SlideDirection.ToLeft:
+					startingTransform = CGAffineTransform.MakeIdentity ();
+					endingTransform = CGAffineTransform.MakeTranslation (-view.Bounds.Width, 0f);
+					break;
+				case SlideDirection.ToRight:
+					startingTransform = CGAffineTransform.MakeIdentity ();
+					endingTransform = CGAffineTransform.MakeTranslation (view.Bounds.Width, 0f);
+					break;
+				case SlideDirection.ToTop:
+					startingTransform = CGAffineTransform.MakeIdentity ();
+					endingTransform = CGAffineTransform.MakeTranslation (0f, -view.Bounds.Height);
+					break;
+				default:
+					startingTransform = CGAffineTransform.MakeIdentity ();
+					endingTransform = CGAffineTransform.MakeIdentity ();
+					break;
 			}
 
 			view.Transform = startingTransform;
@@ -207,4 +207,3 @@ namespace EightBot.AnimExt.iOS
 		}
 	}
 }
-
