@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using System.Linq;
 using CoreAnimation;
+using System.Threading;
 
 namespace EightBot.AnimExt.iOS
 {
@@ -39,12 +40,19 @@ namespace EightBot.AnimExt.iOS
 
 		}
 
-		public static async Task Spin(this UIView view, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
+		public static async Task Spin(this UIView view, CancellationToken cancellationToken, int numberOfSpins = -1, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
 			var splitDuration = duration / 4f;
-			for (int i = 0; i < 4; i++) {
-				await Rotate (view, 90f, spinDirection, splitDuration, animationOptions);	
-			}
-			await Rotate (view, 0f, spinDirection, 0d);	
+			if(numberOfSpins > 0)
+				for (int i = 0; i < numberOfSpins; i++) {
+					if(!cancellationToken.IsCancellationRequested)
+						await Rotate (view, 90f, spinDirection, splitDuration, animationOptions);	
+				}
+			else
+				do {
+					await Rotate (view, 90f, spinDirection, splitDuration, animationOptions);
+				} while (!cancellationToken.IsCancellationRequested);					
+
+			await ResetAnimation (view, animationOptions: UIViewAnimationOptions.CurveEaseOut);	
 		}
 
 		public static Task Rotate(this UIView view, float degrees, SpinDirection spinDirection = SpinDirection.Clockwise, double duration = DefaultAnimationDuration, UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveLinear){
